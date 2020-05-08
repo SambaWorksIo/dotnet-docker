@@ -51,10 +51,9 @@ stages:
           name: DotNetCore-Docker
         demands:
         - agent.os -equals linux
-        - RemoteDockerServerOS -equals linux
-        - RemoteDockerServerArch -equals aarch64
+        - agent.name -equals ddvsotx2l043
       matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm64v8']
-      useRemoteDockerServer: true
+      useRemoteDockerServer: false
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
@@ -68,10 +67,9 @@ stages:
           name: DotNetCore-Docker
         demands:
         - agent.os -equals linux
-        - RemoteDockerServerOS -equals linux
-        - RemoteDockerServerArch -equals aarch64
+        - agent.name -equals ddvsotx2l043
       matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm32v7']
-      useRemoteDockerServer: true
+      useRemoteDockerServer: false
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
@@ -201,11 +199,10 @@ stages:
           name: DotNetCore-Docker
           demands:
           - agent.os -equals linux
-          - RemoteDockerServerOS -equals linux
-          - RemoteDockerServerArch -equals aarch64
+          - agent.name -equals ddvsotx2l043
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm64v8']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
-        useRemoteDockerServer: true
+        useRemoteDockerServer: false
     - template: ../jobs/test-images-linux-client.yml
       parameters:
         name: Linux_arm32v7
@@ -213,11 +210,10 @@ stages:
           name: DotNetCore-Docker
           demands:
           - agent.os -equals linux
-          - RemoteDockerServerOS -equals linux
-          - RemoteDockerServerArch -equals aarch64
+          - agent.name -equals ddvsotx2l043
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm32v7']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
-        useRemoteDockerServer: true
+        useRemoteDockerServer: false
     - template: ../jobs/test-images-windows-client.yml
       parameters:
         name: Windows1809_amd64
